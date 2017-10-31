@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace tictactoe
 {
-    class Player
+    public class Player
     {
-        public static char marker  ;
-      public  static bool isHuman;
+        public  char marker;
+      public   bool isHuman;
         public Player()
         { marker = 'X';
             isHuman = true;
@@ -47,19 +47,20 @@ namespace tictactoe
 
         public string getHumanMove()
         {
-            string s;
-            Console.WriteLine("Enter move");
-            s = Console.ReadLine();
+            
+            Console.WriteLine();
+            Console.WriteLine("Enter move (Column, Space, Row Number )");
+            string s = Console.ReadLine();
             return s;
 
         }
         public string generateComputerMove()
         {
             int i;
-            string s;
-            string[] k = { "A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3" };
+           
+            string[] k = { "A 1", "A 2", "A 3", "B 1", "B 2", "B 3", "C 1", "C 2", "C 3" };
             Random rand = new Random();
-            i = rand.Next(0, 9);
+            i = rand.Next(0, 8);
 
             return k[i];
         }

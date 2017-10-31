@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace tictactoe
 {
-    class Board
+    public class Board
     { static char [,]  gameBoard = new  char [3, 3];
-        public static int row, col;
+        public  int row, col;
 
         public Board()
         {for (int i = 0; i <3; i++)
@@ -24,6 +24,7 @@ namespace tictactoe
         }
         public void PrintBoard()
         {
+          
             Console.Write("  A " + "B " + "C ");
             for (int i = 0; i < 3; i++)
             {
@@ -37,43 +38,76 @@ namespace tictactoe
                     
 
                 }
+                
             }
+
+            Console.WriteLine();
+        }
+        public bool submitMove(string move, char player)
+        {//if else condition is left for this method
+            while (isMoveValid(move)) {
+                string[] m = move.Split(' ');
+                char column = char.Parse(m[0]);
+                row = int.Parse(m[1]) - 1;
+                if (column == 'A')
+                {
+                    col = 0;
+                }
+                if (column == 'B')
+                {
+                    col = 1;
+                }
+                if (column == 'C')
+                {
+                    col = 2;
+                }
+
+               
+                if (gameBoard[row, col] == '_')
+                {
+                    gameBoard[row, col] = player;
+                    return true;
+                }
+                return false;
+            }
+            
+ return false;
+        }
+            
+        public bool gameover()
+        {
+            if (gameBoard[0, col] == gameBoard[1, col] && gameBoard[0, col] == gameBoard[2, col] && gameBoard[row,col]!='_')
+                return true;
+            if (gameBoard[row, 0] == gameBoard[row, 1] && gameBoard[row, 0] == gameBoard[row, 2] && gameBoard[row, col] != '_')
+                return true;
+            if (gameBoard[0, 0] == gameBoard[1, 1] && gameBoard[0, 0] == gameBoard[2, 2]
+                    && gameBoard[1, 1] != '_')
+                return true;
+            if (gameBoard[2, 0] == gameBoard[1, 1] && gameBoard[2, 0] == gameBoard[0, 2] && gameBoard[1, 1] != '_')
+                return true;
+
+            return false;
+
 
 
         }
-       public  bool submitMove(string move,char player)
-        {//if else condition is left for this method
-            
-            string[] m = move.Split(' ');
-            char column = char.Parse(m[0]);
-            if(column == 'A')
+          
+        public bool isWinner(char player) //char player)
+        {
+            if (gameover())
             {
-                col = 0;
-}
-            if (column == 'B')
-            {
-                col = 1;
-            }
-            if (column == 'C')
-            {
-                col = 2;
-            }
-            
-             row = int.Parse(m[1])-1;
-            if (gameBoard[row, column] == '_')
-            {
-                gameBoard[row, col] = player;
+                Console.WriteLine("GAME OVER" + player+ "wins");
                 return true;
             }
-            else return false;
-          
-
-
+            return false;
         }
 
-       public  bool isWinner(char player)
+
+        
+
+      /* public  bool isWinner()
         {
-            if (gameBoard[0,col] == gameBoard[1,col] && gameBoard[0,col] == gameBoard[2,col])
+            if (gameBoard[0,col] == gameBoard[1,col] && gameBoard[0,col] == gameBoard[2,col] )
                 return true;
             if (gameBoard[row,0] == gameBoard[row,1] && gameBoard[row,0] == gameBoard[row,2])
                 return true;
@@ -83,15 +117,18 @@ namespace tictactoe
             if (gameBoard[2,0] == gameBoard[1,1] && gameBoard[2,0] == gameBoard[0,2] && gameBoard[1,1] != '_')
                 return true;
             return false;
-        }
+        }*/
 
        public  bool isMoveValid (string move)
-        {  if (move == "A1 " || move == "A2" || move == "A3" || move == "B1" || move == "B2" || move == "B3" || move == "C1" || move == "C2" || move == "C3")
+        {  if (move == "A 1" || move == "A 2" || move == "A 3" || move == "B 1" || move == "B 2" || move == "B 3" || move == "C 1" || move == "C 2" || move == "C 3")
             {
                 return true;
             }
+            Console.WriteLine("enter valid input");
             return false;
         }
+
+
 
     }
 }
