@@ -23,8 +23,10 @@ namespace tictactoe
 
 
             }
-            marker = 'O';
-
+            else
+            {
+                marker = 'O';
+            }
         }
         public char gerMarker()
         {
@@ -49,8 +51,10 @@ namespace tictactoe
         {
             
             Console.WriteLine();
-            Console.WriteLine("Enter move (Column, Space, Row Number )");
+            Console.WriteLine("Enter move (Column(In Caps), Space, Row Number. )");
+            Console.WriteLine("Invalid move will result in a penalty,move will not be counted then.");
             string s = Console.ReadLine();
+            Console.WriteLine("Player Move :" + s);
             return s;
 
         }
@@ -61,7 +65,7 @@ namespace tictactoe
             string[] k = { "A 1", "A 2", "A 3", "B 1", "B 2", "B 3", "C 1", "C 2", "C 3" };
             Random rand = new Random();
             i = rand.Next(0, 8);
-
+            Console.WriteLine("Ai move : " + k[i]);
             return k[i];
         }
     }

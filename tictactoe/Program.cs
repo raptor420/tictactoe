@@ -8,44 +8,89 @@ namespace tictactoe
 {
     class Program
     {
+        static String re;
+        static bool play = true;
+        static Board b = new Board();
+        static Player h = new Player(true);
+        static Player ai = new Player(false);
+
 
         static void Main(string[] args)
         {
-            bool play = true;
-            Board b = new Board();
-            Player h = new Player();
-            Player ai = new Player(false);
             Console.WriteLine("Welcome to Farhan's Tic Tac Toe");
 
             b.PrintBoard();
-            
-          
-
-            while(play)
-       
-            { 
-
-                b.submitMove(h.getPlayerMove(), h.gerMarker());
-                b.PrintBoard();
-
-                b.submitMove(ai.getPlayerMove(), ai.gerMarker());
-                Console.WriteLine();
-                b.PrintBoard();
-                if(b.isWinner(h.gerMarker()) || b.isWinner(ai.gerMarker()) )
-                {
-                    play = false;
-                   // Console.WriteLine(ai.gerMarker());
-
-                }
-
-
-                //  b.submitMove(ai.getPlayerMove(), ai.gerMarker());
-                //NOT SO SMART ai ATM LOL XD 
-            }
-
+            Play();
 
 
         }
-    }
+
+
+            /*if(b.isWinner(h.gerMarker()) || b.isWinner(ai.gerMarker()))
+                            {
+                                if(AiMoveCounter> HMoveCounter)
+                                {
+
+                                    Console.WriteLine("Player wins");
+                                }
+                                if (HMoveCounter > AiMoveCounter)
+                                {
+
+                                    Console.WriteLine("Ai Wins");
+                                } 
+
+                            }*/
+
+
+/* Console.WriteLine("GAME OVER" + "Press R to play again");
+ re = Console.ReadLine();
+ if (re == "R")
+ {
+     Board c= new Board();
+     play = true;
+     Play();
+
+
+
+
+ }
+
+}*/
+
+
+
+
+//  b.submitMove(ai.getPlayerMove(), ai.gerMarker());
+//NOT SO SMART ai ATM LOL XD 
+
+public static void Play()
+{
+ while (play)
+
+ {
+
+     b.submitMove(h.getPlayerMove(), h.gerMarker());
+                ;
+     b.PrintBoard();
+     if (b.isWinner(h.gerMarker()))
+     {
+         play = false;
+         break;
+
+     }
+
+
+     b.submitMove(ai.getPlayerMove(), ai.gerMarker());
+     Console.WriteLine();
+     b.PrintBoard();
+     if (b.isWinner(ai.gerMarker())) { play = false; }
+
+ }
+
 
 }
+}
+
+}
+ 
+ 

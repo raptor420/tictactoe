@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 namespace tictactoe
 {
     public class Board
-    { static char [,]  gameBoard = new  char [3, 3];
+    {
+       
+
+        public char [,]  gameBoard = new  char [3, 3];
         public  int row, col;
+        int point;
+        Player p;
 
         public Board()
         {for (int i = 0; i <3; i++)
@@ -76,27 +81,38 @@ namespace tictactoe
             
         public bool gameover()
         {
-            if (gameBoard[0, col] == gameBoard[1, col] && gameBoard[0, col] == gameBoard[2, col] && gameBoard[row,col]!='_')
+            if (gameBoard[0, col] == gameBoard[1, col] && gameBoard[0, col] == gameBoard[2, col]  && gameBoard[row,col] != '_')
+            {
+                
                 return true;
+            }
             if (gameBoard[row, 0] == gameBoard[row, 1] && gameBoard[row, 0] == gameBoard[row, 2] && gameBoard[row, col] != '_')
+            {
+                point = 1;
                 return true;
+            }
             if (gameBoard[0, 0] == gameBoard[1, 1] && gameBoard[0, 0] == gameBoard[2, 2]
                     && gameBoard[1, 1] != '_')
+            {
+                
                 return true;
+            }
             if (gameBoard[2, 0] == gameBoard[1, 1] && gameBoard[2, 0] == gameBoard[0, 2] && gameBoard[1, 1] != '_')
+            {
+                
                 return true;
-
+            }
             return false;
 
 
 
         }
           
-        public bool isWinner(char player) //char player)
+        public bool isWinner(char player) 
         {
             if (gameover())
-            {
-                Console.WriteLine("GAME OVER" + player+ "wins");
+            { 
+                Console.WriteLine(  player +" Wins" );
                 return true;
             }
             return false;
