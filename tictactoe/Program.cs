@@ -8,12 +8,12 @@ namespace tictactoe
 {
     class Program
     {
-        static String re;
+        //static String re;
         static bool play = true;
         static Board b = new Board();
         static Player h = new Player(true);
         static Player ai = new Player(false);
-
+        public int ass;
 
         static void Main(string[] args)
         {
